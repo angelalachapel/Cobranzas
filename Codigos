@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Sistema de Cobranza</title>
+
+<style>
+body{
+    font-family:Arial;
+    background:#f4f4f4;
+    margin:30px;
+}
+.container{
+    background:#fff;
+    padding:20px;
+    border-radius:10px;
+    max-width:700px;
+    margin:auto;
+    box-shadow:0 0 10px rgba(0,0,0,.2);
+}
+input{
+    width:100%;
+    padding:10px;
+    margin:8px 0;
+}
+button{
+    background:#0d6efd;
+    color:white;
+    border:none;
+    padding:10px 20px;
+    cursor:pointer;
+}
+table{
+    width:100%;
+    margin-top:20px;
+    border-collapse:collapse;
+}
+th,td{
+    border:1px solid #ccc;
+    padding:8px;
+}
+th{
+    background:#0d6efd;
+    color:white;
+}
+</style>
+</head>
+
+<body>
+
+<div class="container">
+<h2>Sistema de Cobranza</h2>
+
+<input id="cliente" placeholder="Nombre del cliente">
+<input id="telefono" placeholder="Teléfono">
+<input id="monto" type="number" placeholder="Monto pendiente">
+
+<button onclick="guardar()">Agregar</button>
+
+<table>
+<thead>
+<tr>
+<th>Cliente</th>
+<th>Teléfono</th>
+<th>Monto</th>
+</tr>
+</thead>
+
+<tbody id="tabla"></tbody>
+
+</table>
+
+</div>
+
+<script>
+
+function guardar(){
+
+let cliente=document.getElementById("cliente").value;
+let telefono=document.getElementById("telefono").value;
+let monto=document.getElementById("monto").value;
+
+if(cliente=="" || telefono=="" || monto==""){
+alert("Complete todos los campos");
+return;
+}
+
+let fila=`
+<tr>
+<td>${cliente}</td>
+<td>${telefono}</td>
+<td>RD$ ${parseFloat(monto).toFixed(2)}</td>
+</tr>
+`;
+
+document.getElementById("tabla").innerHTML+=fila;
+
+document.getElementById("cliente").value="";
+document.getElementById("telefono").value="";
+document.getElementById("monto").value="";
+
+}
+
+</script>
+
+</body>
+</html>
